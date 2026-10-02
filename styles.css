@@ -82,40 +82,67 @@ html.dark .border-darkBorder {
   border-color: #222222;
 }
 
-/* Light Mode:
-   - Off-white background: #FAFAFA
-   - Dark headings: #09090B
-   - Light grey containers: #F4F4F5
-   - Light borders: #E4E4E7
-   - Muted text: #71717A
-*/
+/* ==========================================================================
+   Light Mode Comprehensive Design System
+   - Off-white canvas: #FAFAFA
+   - Pure white elevated cards: #FFFFFF with subtle borders #E4E4E7
+   - High contrast headings: #09090B
+   - Body & secondary text: #52525B / #71717A
+   ========================================================================== */
 html:not(.dark) {
   color-scheme: light;
 }
 
 html:not(.dark) body {
-  background-color: #FAFAFA;
-  color: #09090B;
+  background-color: #FAFAFA !important;
+  color: #09090B !important;
 }
 
-html:not(.dark) #site-header {
-  background-color: rgba(250, 250, 250, 0.82);
-  border-bottom-color: #E4E4E7;
+html:not(.dark) ::selection {
+  background-color: #E4E4E7 !important;
+  color: #09090B !important;
 }
 
-html:not(.dark) #header-brand-name {
-  color: #09090B;
+/* Base Headings, Text & Containers */
+html:not(.dark) h1, 
+html:not(.dark) h2, 
+html:not(.dark) h3, 
+html:not(.dark) h4 {
+  color: #09090B !important;
 }
 
-html:not(.dark) header nav a {
+html:not(.dark) p {
   color: #52525B;
 }
 
-html:not(.dark) header nav a:hover {
-  color: #09090B;
+html:not(.dark) .border-darkBorder {
+  border-color: #E4E4E7 !important;
 }
 
-/* Clean borderless theme toggle button (no enclosing circle/border/background) */
+html:not(.dark) .bg-darkCard {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+}
+
+/* 1. Header & Navigation */
+html:not(.dark) #site-header {
+  background-color: rgba(250, 250, 250, 0.88) !important;
+  border-bottom-color: #E4E4E7 !important;
+}
+
+html:not(.dark) #header-brand-name {
+  color: #09090B !important;
+}
+
+html:not(.dark) header nav a {
+  color: #52525B !important;
+}
+
+html:not(.dark) header nav a:hover {
+  color: #09090B !important;
+}
+
+/* Theme Toggle Button (Clean floating icon, no circle border/bg) */
 #theme-toggle {
   background: transparent !important;
   background-color: transparent !important;
@@ -123,6 +150,7 @@ html:not(.dark) header nav a:hover {
   outline: none !important;
   box-shadow: none !important;
   color: #A1A1AA;
+  cursor: pointer;
 }
 
 #theme-toggle:hover {
@@ -141,7 +169,6 @@ html:not(.dark) #theme-toggle:hover {
   color: #000000 !important;
 }
 
-/* Ensure moon and sun SVGs are crisply styled and visible */
 #sun-icon, #moon-icon {
   display: block;
 }
@@ -150,39 +177,47 @@ html:not(.dark) #theme-toggle:hover {
   stroke: currentColor;
 }
 
+/* Header Primary CTA */
 html:not(.dark) #nav-book-btn {
-  background-color: #09090B;
-  color: #FFFFFF;
+  background-color: #09090B !important;
+  color: #FFFFFF !important;
 }
 
 html:not(.dark) #nav-book-btn:hover {
-  background-color: #27272A;
+  background-color: #27272A !important;
 }
 
+/* 2. Hero Section */
 html:not(.dark) #hero-badge {
-  background-color: #F4F4F5;
-  border-color: #E4E4E7;
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 
 html:not(.dark) #hero-badge span {
-  color: #3F3F46;
+  color: #52525B !important;
 }
 
-html:not(.dark) #hero-badge span > span {
-  color: #09090B;
+html:not(.dark) #hero-badge span > span,
+html:not(.dark) #hero-badge span .text-white {
+  color: #09090B !important;
+}
+
+html:not(.dark) #hero-badge img {
+  --tw-ring-color: #FFFFFF !important;
 }
 
 html:not(.dark) #hero-heading {
-  color: #09090B;
+  color: #09090B !important;
 }
 
 html:not(.dark) #hero-heading .hero-title-main {
-  color: #09090B;
+  color: #09090B !important;
 }
 
 html:not(.dark) #hero-heading .hero-subtext {
   color: #71717A !important;
-  opacity: 0.7 !important;
+  opacity: 0.8 !important;
 }
 
 html.dark #hero-heading .hero-subtext {
@@ -191,124 +226,231 @@ html.dark #hero-heading .hero-subtext {
 }
 
 html:not(.dark) #hero-subheading {
-  color: #52525B;
-}
-
-html:not(.dark) #hero-ctas a {
-  background-color: #E4E4E7;
-  color: #09090B;
-  border-color: #D4D4D8;
-}
-
-html:not(.dark) #hero-ctas a:hover {
-  background-color: #D4D4D8;
-}
-
-html:not(.dark) #hero-ctas a i {
-  color: #52525B;
-}
-
-html:not(.dark) #hero-ctas button.book-call-trigger {
-  color: #3F3F46;
-}
-
-html:not(.dark) #hero-ctas button.book-call-trigger:hover {
-  color: #09090B;
-}
-
-html:not(.dark) .border-darkBorder {
-  border-color: #E4E4E7 !important;
-}
-
-html:not(.dark) .bg-darkCard {
-  background-color: #F4F4F5 !important;
-}
-
-html:not(.dark) h1, 
-html:not(.dark) h2, 
-html:not(.dark) h3, 
-html:not(.dark) h4 {
-  color: #09090B !important;
-}
-
-html:not(.dark) p {
-  color: #52525B;
-}
-
-html:not(.dark) .text-neutral-400 {
-  color: #71717A !important;
-}
-
-html:not(.dark) .text-neutral-300 {
   color: #52525B !important;
 }
 
-html:not(.dark) .text-neutral-200 {
-  color: #27272A !important;
+/* Hero CTAs */
+html:not(.dark) #hero-ctas a {
+  background-color: #09090B !important;
+  color: #FFFFFF !important;
+  border-color: #09090B !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
 }
 
-html:not(.dark) .testimonial-card {
-  background-color: #FFFFFF !important;
+html:not(.dark) #hero-ctas a:hover {
+  background-color: #27272A !important;
+  border-color: #27272A !important;
+}
+
+html:not(.dark) #hero-ctas a i {
+  color: #A1A1AA !important;
+}
+
+html:not(.dark) #hero-ctas a:hover i {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) #hero-ctas button.book-call-trigger {
+  color: #52525B !important;
+}
+
+html:not(.dark) #hero-ctas button.book-call-trigger:hover {
+  color: #09090B !important;
+}
+
+/* Hero Stats Row (45M+, 6+ Yrs, 100%) - Fixes invisible white numbers */
+html:not(.dark) #hero .border-t {
   border-color: #E4E4E7 !important;
 }
 
+html:not(.dark) #hero .grid > div > div:first-child,
+html:not(.dark) #hero .grid > div > .text-white {
+  color: #09090B !important;
+}
+
+html:not(.dark) #hero .grid > div > .text-neutral-400 {
+  color: #71717A !important;
+}
+
+/* 3. Selected Work Section */
+html:not(.dark) #work .border-b {
+  border-color: #E4E4E7 !important;
+}
+
+html:not(.dark) #work h2 {
+  color: #09090B !important;
+}
+
+html:not(.dark) #work a[href="#contact"] {
+  color: #71717A !important;
+}
+
+html:not(.dark) #work a[href="#contact"]:hover {
+  color: #09090B !important;
+}
+
+/* Project Cards */
+html:not(.dark) .project-card {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+html:not(.dark) .project-card:hover {
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+html:not(.dark) .project-card h3 {
+  color: #09090B !important;
+}
+
+html:not(.dark) .project-card:hover h3 {
+  color: #3F3F46 !important;
+}
+
+html:not(.dark) .project-card p {
+  color: #71717A !important;
+}
+
+html:not(.dark) .project-card .font-mono {
+  background-color: #F4F4F5 !important;
+  border-color: #E4E4E7 !important;
+  color: #52525B !important;
+}
+
+/* 4. Testimonials Section */
+html:not(.dark) #testimonials .border-b {
+  border-color: #E4E4E7 !important;
+}
+
+html:not(.dark) #testimonials h2 {
+  color: #09090B !important;
+}
+
+html:not(.dark) #testimonials p {
+  color: #71717A !important;
+}
+
+html:not(.dark) #carousel-prev,
+html:not(.dark) #carousel-next {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  color: #09090B !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+html:not(.dark) #carousel-prev:hover,
+html:not(.dark) #carousel-next:hover {
+  background-color: #F4F4F5 !important;
+  border-color: #D4D4D8 !important;
+}
+
+/* Testimonial Cards */
+html:not(.dark) .testimonial-card {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+html:not(.dark) .testimonial-card:hover {
+  border-color: #CBD5E1 !important;
+}
+
+html:not(.dark) .testimonial-card .border-b {
+  border-color: #F4F4F5 !important;
+}
+
+html:not(.dark) .testimonial-card img {
+  border-color: #E4E4E7 !important;
+}
+
+/* Testimonial Author Name & Subtitle - Fixes invisible names */
+html:not(.dark) .testimonial-card .text-white,
+html:not(.dark) .testimonial-card .font-bold.text-white {
+  color: #09090B !important;
+}
+
+html:not(.dark) .testimonial-card .text-xs.text-neutral-400 {
+  color: #71717A !important;
+}
+
+/* Testimonial Platform Tag */
+html:not(.dark) .testimonial-card span.font-mono {
+  background-color: #F4F4F5 !important;
+  border-color: #E4E4E7 !important;
+  color: #52525B !important;
+}
+
+/* Testimonial Message Bubble */
 html:not(.dark) .testimonial-card .bg-neutral-900\/90 {
   background-color: #F4F4F5 !important;
   border-color: #E4E4E7 !important;
   color: #18181B !important;
 }
 
-html:not(.dark) .testimonial-card .border-darkBorder {
-  border-color: #F4F4F5 !important;
+html:not(.dark) .testimonial-card .mt-6 {
+  color: #71717A !important;
 }
 
-html:not(.dark) #carousel-prev,
-html:not(.dark) #carousel-next {
-  background-color: #FFFFFF;
-  border-color: #E4E4E7;
-  color: #09090B;
+html:not(.dark) .testimonial-card .mt-6 span {
+  color: #71717A !important;
 }
 
-html:not(.dark) #carousel-prev:hover,
-html:not(.dark) #carousel-next:hover {
-  background-color: #F4F4F5;
-}
-
-html:not(.dark) #timeline-container {
-  border-left-color: #E4E4E7;
-}
-
-html:not(.dark) .timeline-item .w-4.h-4 {
-  background-color: #FFFFFF;
-  border-color: #A1A1AA;
-}
-
-html:not(.dark) .timeline-item:hover .w-4.h-4 {
-  border-color: #09090B;
-  background-color: #09090B;
-}
-
-html:not(.dark) .timeline-item span.text-white {
-  color: #09090B !important;
-}
-
-html:not(.dark) #contact .rounded-3xl {
-  background-color: #FFFFFF !important;
+/* 5. Timeline / Story Section */
+html:not(.dark) #story .border-b {
   border-color: #E4E4E7 !important;
 }
 
-html:not(.dark) #contact a.p-2\.5 {
-  background-color: #F4F4F5;
-  border-color: #E4E4E7;
-  color: #52525B;
+html:not(.dark) #story h2 {
+  color: #09090B !important;
 }
 
-html:not(.dark) #contact a.p-2\.5:hover {
-  background-color: #E4E4E7;
-  color: #09090B;
+html:not(.dark) #timeline-container {
+  border-left-color: #E4E4E7 !important;
 }
 
-html:not(.dark) #contact .bg-neutral-900 {
+html:not(.dark) .timeline-item .w-4.h-4 {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+}
+
+html:not(.dark) .timeline-item:hover .w-4.h-4 {
+  background-color: #09090B !important;
+  border-color: #09090B !important;
+}
+
+html:not(.dark) .timeline-item span.font-mono {
+  color: #09090B !important;
+}
+
+html:not(.dark) .timeline-item span.text-emerald-400 {
+  color: #059669 !important;
+}
+
+html:not(.dark) .timeline-item p,
+html:not(.dark) .timeline-item p.text-white,
+html:not(.dark) .timeline-item p.text-neutral-300 {
+  color: #3F3F46 !important;
+}
+
+/* 6. Contact & Footer Section */
+html:not(.dark) #contact .rounded-3xl {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not(.dark) #contact h2 {
+  color: #09090B !important;
+}
+
+html:not(.dark) #contact p {
+  color: #52525B !important;
+}
+
+html:not(.dark) #contact .bg-neutral-900.border,
+html:not(.dark) #contact .rounded-full.bg-neutral-900 {
   background-color: #F4F4F5 !important;
   border-color: #E4E4E7 !important;
 }
@@ -317,42 +459,182 @@ html:not(.dark) #contact #email-link {
   color: #09090B !important;
 }
 
+html:not(.dark) #contact #email-link:hover {
+  color: #27272A !important;
+}
+
+html:not(.dark) #contact #email-link i {
+  color: #71717A !important;
+}
+
+html:not(.dark) #contact #copy-email-btn {
+  border-left-color: #E4E4E7 !important;
+  color: #71717A !important;
+}
+
+html:not(.dark) #contact #copy-email-btn:hover {
+  color: #09090B !important;
+}
+
 html:not(.dark) #contact .book-call-trigger {
   background-color: #09090B !important;
   color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
 }
 
-html:not(.dark) #video-modal .bg-darkCard,
-html:not(.dark) #booking-modal .bg-darkCard {
+html:not(.dark) #contact .book-call-trigger:hover {
+  background-color: #27272A !important;
+}
+
+html:not(.dark) #contact .border-t {
+  border-color: #E4E4E7 !important;
+}
+
+html:not(.dark) #contact a.p-2\.5 {
+  background-color: #F4F4F5 !important;
+  border-color: #E4E4E7 !important;
+  color: #52525B !important;
+}
+
+html:not(.dark) #contact a.p-2\.5:hover {
+  background-color: #E4E4E7 !important;
+  color: #09090B !important;
+  border-color: #CBD5E1 !important;
+}
+
+html:not(.dark) footer {
+  color: #71717A !important;
+}
+
+/* 7. Modals & Forms */
+html:not(.dark) #video-modal {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+html:not(.dark) #video-modal .bg-darkCard {
   background-color: #FFFFFF !important;
   border-color: #E4E4E7 !important;
 }
 
-html:not(.dark) #booking-form input,
+html:not(.dark) #video-modal #modal-title {
+  color: #09090B !important;
+}
+
+html:not(.dark) #video-modal #modal-desc {
+  color: #52525B !important;
+}
+
+html:not(.dark) #video-modal .book-call-trigger {
+  background-color: #09090B !important;
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) #video-modal .book-call-trigger:hover {
+  background-color: #27272A !important;
+}
+
+/* Booking Modal */
+html:not(.dark) #booking-modal {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+html:not(.dark) #booking-modal .bg-darkCard {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12) !important;
+}
+
+html:not(.dark) #close-booking-modal {
+  background-color: #F4F4F5 !important;
+  border-color: #E4E4E7 !important;
+  color: #52525B !important;
+}
+
+html:not(.dark) #close-booking-modal:hover {
+  background-color: #E4E4E7 !important;
+  color: #09090B !important;
+}
+
+html:not(.dark) #booking-modal .w-12.h-12 {
+  background-color: #F4F4F5 !important;
+  border-color: #E4E4E7 !important;
+}
+
+html:not(.dark) #booking-modal .w-12.h-12 i {
+  color: #09090B !important;
+}
+
+html:not(.dark) #booking-modal h3 {
+  color: #09090B !important;
+}
+
+html:not(.dark) #booking-modal p {
+  color: #71717A !important;
+}
+
+html:not(.dark) #booking-form label {
+  color: #18181B !important;
+}
+
+html:not(.dark) #booking-form input[type="text"],
+html:not(.dark) #booking-form input[type="email"],
 html:not(.dark) #booking-form select {
-  background-color: #F4F4F5;
-  border-color: #E4E4E7;
-  color: #09090B;
+  background-color: #F4F4F5 !important;
+  border-color: #E4E4E7 !important;
+  color: #09090B !important;
+}
+
+html:not(.dark) #booking-form input::placeholder {
+  color: #A1A1AA !important;
+}
+
+html:not(.dark) #booking-form input:focus,
+html:not(.dark) #booking-form select:focus {
+  border-color: #09090B !important;
+  background-color: #FFFFFF !important;
+}
+
+html:not(.dark) #booking-form select option {
+  background-color: #FFFFFF !important;
+  color: #09090B !important;
 }
 
 html:not(.dark) #booking-form label.flex {
-  background-color: #F4F4F5;
-  border-color: #E4E4E7;
-  color: #09090B;
+  background-color: #F4F4F5 !important;
+  border-color: #E4E4E7 !important;
+  color: #52525B !important;
 }
 
 html:not(.dark) #booking-form label.flex:hover {
-  border-color: #A1A1AA;
+  border-color: #CBD5E1 !important;
+  color: #09090B !important;
 }
 
-html:not(.dark) #booking-form label.flex.has-\[\:checked\]\:border-white {
+html:not(.dark) #booking-form label.flex:has(input:checked) {
+  background-color: #09090B !important;
   border-color: #09090B !important;
-  background-color: #E4E4E7 !important;
+  color: #FFFFFF !important;
 }
 
 html:not(.dark) #booking-form button[type="submit"] {
-  background-color: #09090B;
-  color: #FFFFFF;
+  background-color: #09090B !important;
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) #booking-form button[type="submit"]:hover {
+  background-color: #27272A !important;
+}
+
+/* Toast */
+html:not(.dark) #toast {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  color: #09090B !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+html:not(.dark) #toast-message {
+  color: #09090B !important;
 }
 
 /* ==========================================================================
