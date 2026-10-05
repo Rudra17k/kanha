@@ -145,10 +145,22 @@
 
       <!-- Hero CTAs -->
       <div id="hero-ctas" class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-        <!-- Primary CTA: Translucent grey button with work/folder icon -->
-        <a href="#work" class="w-full sm:w-auto px-6 py-3.5 rounded-full text-sm font-semibold bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-800/80 dark:hover:bg-neutral-700/90 text-white border border-neutral-900 dark:border-neutral-700/60 backdrop-blur-md flex items-center justify-center gap-2.5 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-lg group">
-          <i data-lucide="folder-git-2" class="w-4 h-4 text-neutral-400 group-hover:text-white transition-colors"></i>
-          <span>see my work</span>
+        <!-- 3D macOS Peek Folder Button -->
+        <a href="#work" class="folder-badge group">
+          <span class="fb-folder" aria-hidden="true">
+            <span class="fb-back">
+              <span class="fb-tab"></span>
+            </span>
+            <!-- 3 Mini project preview cards nestled inside the folder -->
+            <span class="fb-cards">
+              <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=100&auto=format&fit=crop&q=80" alt="Work 1" class="fb-card fb-card-1" />
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=100&auto=format&fit=crop&q=80" alt="Work 2" class="fb-card fb-card-2" />
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=100&auto=format&fit=crop&q=80" alt="Work 3" class="fb-card fb-card-3" />
+            </span>
+            <span class="fb-front"></span>
+          </span>
+          <span class="font-semibold text-sm">see my work</span>
+          <i data-lucide="arrow-down-right" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 text-neutral-400 group-hover:text-white"></i>
         </a>
 
         <!-- Secondary CTA: Simple text link -->
@@ -158,19 +170,19 @@
         </button>
       </div>
 
-      <!-- Stat Badges row -->
+      <!-- Stat Badges row (Animated Counters) -->
       <div class="mt-16 pt-8 border-t border-neutral-200 dark:border-[#222222] w-full max-w-2xl grid grid-cols-3 gap-4 text-center">
         <div>
-          <div class="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white">45M+</div>
-          <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 uppercase tracking-wider">Organic Views</div>
+          <div class="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white stat-counter" data-target="45" data-suffix="M+">45M+</div>
+          <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 uppercase tracking-wider font-medium">Organic Views</div>
         </div>
         <div>
-          <div class="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white">6+ Yrs</div>
-          <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 uppercase tracking-wider">Obsessed</div>
+          <div class="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white stat-counter" data-target="6" data-suffix="+ Yrs">6+ Yrs</div>
+          <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 uppercase tracking-wider font-medium">Obsessed</div>
         </div>
         <div>
-          <div class="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white">100%</div>
-          <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 uppercase tracking-wider">Client Delivery</div>
+          <div class="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white stat-counter" data-target="100" data-suffix="%">100%</div>
+          <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 uppercase tracking-wider font-medium">Client Delivery</div>
         </div>
       </div>
 
@@ -179,23 +191,38 @@
     <!-- 3. Selected Work Section (`#work`) -->
     <section id="work" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-20">
       
-      <!-- Section Header -->
-      <div class="flex items-end justify-between mb-12 border-b border-neutral-200 dark:border-darkBorder pb-6">
+      <!-- Section Header with 3D Peek Deck -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 border-b border-neutral-200 dark:border-darkBorder pb-6 gap-4">
         <div>
-          <span class="text-xs font-semibold tracking-widest text-neutral-500 dark:text-neutral-400 uppercase">Portfolio</span>
+          <span class="text-xs font-semibold tracking-widest text-neutral-500 dark:text-neutral-400 uppercase">Selected Work</span>
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mt-1">selected work</h2>
         </div>
-        <a href="#contact" class="group text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-1">
-          <span>check out more</span>
-          <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+
+        <!-- 3D Fan-Out Card Deck Link -->
+        <a href="#contact" class="peek-deck-link group self-start sm:self-auto">
+          <div class="peek-stack">
+            <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=100&auto=format&fit=crop&q=80" class="peek-card peek-card-1" alt="thumb 1" />
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=100&auto=format&fit=crop&q=80" class="peek-card peek-card-2" alt="thumb 2" />
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=100&auto=format&fit=crop&q=80" class="peek-card peek-card-3" alt="thumb 3" />
+          </div>
+          <span class="text-sm font-semibold text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors">check out more</span>
+          <span class="text-sm transition-transform duration-300 group-hover:translate-x-1.5 text-neutral-400 group-hover:text-black dark:group-hover:text-white">→</span>
         </a>
+      </div>
+
+      <!-- Interactive Category Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none" id="work-filters">
+        <button type="button" data-filter="all" class="work-filter-btn active">All Work</button>
+        <button type="button" data-filter="3d-motion" class="work-filter-btn">3D &amp; CGI</button>
+        <button type="button" data-filter="commercial" class="work-filter-btn">Commercials</button>
+        <button type="button" data-filter="brand-film" class="work-filter-btn">Brand Films</button>
       </div>
 
       <!-- Video Grid Display -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="work-grid">
 
         <!-- Card 1 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl">
+        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="3d-motion">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-cyber-city-with-neon-lights-and-skyscrapers-41555-large.mp4" 
@@ -220,6 +247,17 @@
               <span class="px-3 py-1 rounded-full text-xs font-semibold bg-black/60 backdrop-blur-md text-white border border-white/10">3D Motion</span>
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">Tech Launch</span>
             </div>
+
+            <!-- Live Soundwave Equalizer Badge -->
+            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+              <span class="soundwave-indicator">
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+              </span>
+              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
+            </div>
           </div>
 
           <!-- Card Content / Meta -->
@@ -233,7 +271,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl">
+        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="brand-film">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-sunset-26070-large.mp4" 
@@ -256,6 +294,17 @@
               <span class="px-3 py-1 rounded-full text-xs font-semibold bg-black/60 backdrop-blur-md text-white border border-white/10">Cinematic</span>
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">RedBull Series</span>
             </div>
+
+            <!-- Live Soundwave Equalizer Badge -->
+            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+              <span class="soundwave-indicator">
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+              </span>
+              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
+            </div>
           </div>
 
           <div class="p-6 flex items-center justify-between">
@@ -268,7 +317,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl">
+        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="brand-film">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-working-on-a-computer-1107-large.mp4" 
@@ -291,6 +340,17 @@
               <span class="px-3 py-1 rounded-full text-xs font-semibold bg-black/60 backdrop-blur-md text-white border border-white/10">Product Film</span>
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">SaaS Launch</span>
             </div>
+
+            <!-- Live Soundwave Equalizer Badge -->
+            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+              <span class="soundwave-indicator">
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+              </span>
+              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
+            </div>
           </div>
 
           <div class="p-6 flex items-center justify-between">
@@ -303,7 +363,7 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl">
+        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="commercial">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" 
@@ -325,6 +385,17 @@
             <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
               <span class="px-3 py-1 rounded-full text-xs font-semibold bg-black/60 backdrop-blur-md text-white border border-white/10">Commercial</span>
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">Brand Identity</span>
+            </div>
+
+            <!-- Live Soundwave Equalizer Badge -->
+            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+              <span class="soundwave-indicator">
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+                <span class="soundwave-bar"></span>
+              </span>
+              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
             </div>
           </div>
 
@@ -351,12 +422,17 @@
           <p class="text-neutral-500 dark:text-neutral-400 text-sm sm:text-base mt-2">real messages. zero polish.</p>
         </div>
 
-        <!-- Carousel Navigation Arrows -->
+        <!-- Controls: Bento Grid Toggle + Carousel Navigation Arrows -->
         <div class="flex items-center gap-3 self-end sm:self-auto">
-          <button id="carousel-prev" type="button" aria-label="Previous testimonial" class="w-11 h-11 rounded-full border border-neutral-200 dark:border-darkBorder bg-white dark:bg-darkCard hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm">
+          <button id="toggle-bento-view" type="button" aria-label="Toggle Bento Grid View" class="bento-toggle-btn shadow-sm">
+            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+            <span id="bento-toggle-text">Grid View</span>
+          </button>
+
+          <button id="carousel-prev" type="button" aria-label="Previous testimonial" class="carousel-nav-btn w-11 h-11 rounded-full border border-neutral-200 dark:border-darkBorder bg-white dark:bg-darkCard hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm">
             <span class="text-lg">←</span>
           </button>
-          <button id="carousel-next" type="button" aria-label="Next testimonial" class="w-11 h-11 rounded-full border border-neutral-200 dark:border-darkBorder bg-white dark:bg-darkCard hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm">
+          <button id="carousel-next" type="button" aria-label="Next testimonial" class="carousel-nav-btn w-11 h-11 rounded-full border border-neutral-200 dark:border-darkBorder bg-white dark:bg-darkCard hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm">
             <span class="text-lg">→</span>
           </button>
         </div>

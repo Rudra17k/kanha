@@ -693,3 +693,393 @@ html:not(.dark) #toast-message {
     transform: scale(1);
   }
 }
+
+/* ==========================================================================
+   1000x Enhancement 1: 3D Interactive macOS Peek Folder Button (Hero CTA)
+   ========================================================================== */
+.folder-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  background: #09090B;
+  color: #FFFFFF;
+  border: 1px solid #27272A;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark .folder-badge {
+  background: rgba(26, 26, 28, 0.85);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.folder-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+html:not(.dark) .folder-badge {
+  background: #09090B;
+  color: #FFFFFF;
+  border-color: #09090B;
+}
+
+html:not(.dark) .folder-badge:hover {
+  background: #27272A;
+  border-color: #27272A;
+}
+
+/* Physical 3D macOS Folder Structure */
+.fb-folder {
+  position: relative;
+  width: 26px;
+  height: 20px;
+  display: inline-block;
+  perspective: 200px;
+}
+
+.fb-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  background: linear-gradient(145deg, #38383e, #202024);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+html:not(.dark) .fb-back {
+  background: linear-gradient(145deg, #d4d4d8, #a1a1aa);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.fb-tab {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 12px;
+  height: 5px;
+  border-radius: 3px 3px 0 0;
+  background: inherit;
+  border-top: inherit;
+  border-left: inherit;
+  border-right: inherit;
+}
+
+/* The 3 Mini Project Cards nestled inside */
+.fb-cards {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fb-card {
+  position: absolute;
+  width: 14px;
+  height: 18px;
+  border-radius: 2px;
+  object-fit: cover;
+  bottom: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: bottom center;
+}
+
+.fb-card-1 {
+  transform: translate(-3px, 0) rotate(-4deg);
+  z-index: 1;
+}
+
+.fb-card-2 {
+  transform: translate(0, -1px) rotate(0deg);
+  z-index: 2;
+}
+
+.fb-card-3 {
+  transform: translate(3px, 0) rotate(4deg);
+  z-index: 1;
+}
+
+/* On Folder Hover: Cards Elevate & Fan Out 3D */
+.folder-badge:hover .fb-card-1 {
+  transform: translate(-9px, -11px) rotate(-16deg) scale(1.18);
+}
+
+.folder-badge:hover .fb-card-2 {
+  transform: translate(0, -15px) rotate(0deg) scale(1.24);
+  z-index: 4;
+}
+
+.folder-badge:hover .fb-card-3 {
+  transform: translate(9px, -11px) rotate(16deg) scale(1.18);
+}
+
+/* Folder Front Flap */
+.fb-front {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 15px;
+  border-radius: 0 2px 3px 3px;
+  background: linear-gradient(160deg, #44444c, #2a2a30);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-top-color: rgba(255, 255, 255, 0.35);
+  z-index: 3;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s ease;
+}
+
+html:not(.dark) .fb-front {
+  background: linear-gradient(160deg, #e4e4e7, #b4b4ba);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-top-color: rgba(255, 255, 255, 0.6);
+}
+
+.folder-badge:hover .fb-front {
+  transform: rotateX(-12deg);
+}
+
+/* ==========================================================================
+   1000x Enhancement 2: Fan-Out Miniature Card Deck on "Check out more →"
+   ========================================================================== */
+.peek-deck-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  transition: all 0.25s ease;
+}
+
+.peek-stack {
+  position: relative;
+  width: 38px;
+  height: 26px;
+  perspective: 250px;
+}
+
+.peek-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  transform-origin: center bottom;
+}
+
+.peek-card-1 {
+  transform: rotate(-6deg) translateX(-2px);
+  z-index: 1;
+}
+
+.peek-card-2 {
+  transform: rotate(0deg);
+  z-index: 2;
+}
+
+.peek-card-3 {
+  transform: rotate(6deg) translateX(2px);
+  z-index: 3;
+}
+
+.peek-deck-link:hover .peek-card-1 {
+  transform: translate(-10px, -4px) rotate(-18deg) scale(1.12);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.peek-deck-link:hover .peek-card-2 {
+  transform: translateY(-8px) rotate(0deg) scale(1.18);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+  z-index: 4;
+}
+
+.peek-deck-link:hover .peek-card-3 {
+  transform: translate(10px, -4px) rotate(18deg) scale(1.12);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   1000x Enhancement 3: Project Category Filter Tabs
+   ========================================================================== */
+.work-filter-btn {
+  border: 1px solid transparent;
+  color: #71717A;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.work-filter-btn:hover {
+  color: #09090B;
+  background: #F4F4F5;
+}
+
+html.dark .work-filter-btn {
+  color: #A1A1AA;
+}
+
+html.dark .work-filter-btn:hover {
+  color: #FFFFFF;
+  background: #18181B;
+}
+
+.work-filter-btn.active {
+  background: #09090B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+html.dark .work-filter-btn.active {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Project Card Hidden Animation */
+.project-card.filtered-out {
+  display: none !important;
+}
+
+/* ==========================================================================
+   1000x Enhancement 4: Sound Wave Equalizer on Project Cards
+   ========================================================================== */
+.soundwave-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+
+.soundwave-bar {
+  width: 2.5px;
+  height: 100%;
+  background: currentColor;
+  border-radius: 9999px;
+  transform-origin: bottom;
+  animation: soundWave 1.2s ease-in-out infinite;
+}
+
+.soundwave-bar:nth-child(1) {
+  animation-delay: 0.1s;
+  height: 60%;
+}
+.soundwave-bar:nth-child(2) {
+  animation-delay: 0.3s;
+  height: 100%;
+}
+.soundwave-bar:nth-child(3) {
+  animation-delay: 0.2s;
+  height: 40%;
+}
+.soundwave-bar:nth-child(4) {
+  animation-delay: 0.4s;
+  height: 80%;
+}
+
+@keyframes soundWave {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* ==========================================================================
+   1000x Enhancement 5: Testimonials Bento Grid Switcher
+   ========================================================================== */
+#testimonial-carousel.bento-mode {
+  display: grid !important;
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  gap: 1.5rem !important;
+  overflow: visible !important;
+  cursor: default !important;
+  padding-bottom: 0 !important;
+}
+
+@media (min-width: 640px) {
+  #testimonial-carousel.bento-mode {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+#testimonial-carousel.bento-mode .testimonial-card {
+  width: 100% !important;
+  flex: initial !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Card Filtering Transitions */
+.project-card {
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.project-card.filter-hidden {
+  display: none !important;
+}
+
+.project-card.filter-dimmed {
+  opacity: 0 !important;
+  transform: scale(0.94) translateY(8px) !important;
+  pointer-events: none !important;
+}
+
+.bento-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid #E4E4E7;
+  background: #FFFFFF;
+  color: #52525B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+html.dark .bento-toggle-btn {
+  border-color: #27272A;
+  background: #111111;
+  color: #A1A1AA;
+}
+
+.bento-toggle-btn:hover {
+  color: #09090B;
+  border-color: #CBD5E1;
+}
+
+html.dark .bento-toggle-btn:hover {
+  color: #FFFFFF;
+  border-color: #3F3F46;
+}
+

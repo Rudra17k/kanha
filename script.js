@@ -209,11 +209,126 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initMotionAnimations, 100);
 
   /* ==========================================================================
-     3. Testimonials Horizontal Carousel Controls
+     Stat Counters Animation (0 to Target with Suffix)
+     ========================================================================== */
+  function initStatCounters() {
+    const statCounters = document.querySelectorAll('.stat-counter');
+    if (!statCounters.length) return;
+
+    const animateCounter = (el) => {
+      const target = parseFloat(el.getAttribute('data-target') || '0');
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1800; // ms
+      const startTime = performance.now();
+
+      function updateNumber(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Smooth exponential ease-out
+        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const current = Math.round(ease * target);
+        el.innerText = `${current}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateNumber);
+        } else {
+          el.innerText = `${target}${suffix}`;
+        }
+      }
+
+      requestAnimationFrame(updateNumber);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      statCounters.forEach(counter => counterObserver.observe(counter));
+    } else {
+      statCounters.forEach(animateCounter);
+    }
+  }
+
+  initStatCounters();
+
+  /* ==========================================================================
+     Interactive Work Category Filter
+     ========================================================================== */
+  function initWorkFilters() {
+    const filterBtns = document.querySelectorAll('.work-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (!filterBtns.length || !projectCards.length) return;
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Update active class
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter cards with smooth fade/scale
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          const isMatch = filter === 'all' || category === filter;
+
+          if (isMatch) {
+            card.classList.remove('filter-hidden');
+            requestAnimationFrame(() => {
+              card.classList.remove('filter-dimmed');
+            });
+          } else {
+            card.classList.add('filter-dimmed');
+            setTimeout(() => {
+              if (card.classList.contains('filter-dimmed')) {
+                card.classList.add('filter-hidden');
+              }
+            }, 320);
+          }
+        });
+      });
+    });
+  }
+
+  initWorkFilters();
+
+  /* ==========================================================================
+     3. Testimonials Horizontal Carousel Controls & Bento Switcher
      ========================================================================== */
   const carousel = document.getElementById('testimonial-carousel');
   const prevBtn = document.getElementById('carousel-prev');
   const nextBtn = document.getElementById('carousel-next');
+  const bentoToggleBtn = document.getElementById('toggle-bento-view');
+  const bentoToggleText = document.getElementById('bento-toggle-text');
+
+  // Bento Mode Toggle Controller
+  if (bentoToggleBtn && carousel) {
+    let isBentoMode = false;
+
+    bentoToggleBtn.addEventListener('click', () => {
+      isBentoMode = !isBentoMode;
+      carousel.classList.toggle('bento-mode', isBentoMode);
+
+      if (isBentoMode) {
+        if (bentoToggleText) bentoToggleText.innerText = 'Carousel View';
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+      } else {
+        if (bentoToggleText) bentoToggleText.innerText = 'Grid View';
+        if (prevBtn) prevBtn.style.display = 'flex';
+        if (nextBtn) nextBtn.style.display = 'flex';
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+    });
+  }
 
   if (carousel && prevBtn && nextBtn) {
     const scrollStep = 380;
@@ -232,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollLeft;
 
     carousel.addEventListener('mousedown', (e) => {
+      if (carousel.classList.contains('bento-mode')) return;
       isDown = true;
       carousel.classList.add('active');
       startX = e.pageX - carousel.offsetLeft;
@@ -247,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     carousel.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
+      if (!isDown || carousel.classList.contains('bento-mode')) return;
       e.preventDefault();
       const x = e.pageX - carousel.offsetLeft;
       const walk = (x - startX) * 1.5;
