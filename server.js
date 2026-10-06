@@ -51,6 +51,17 @@ const server = http.createServer((req, res) => {
   });
 });
 
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`\n⚠️  Port ${PORT} is already in use.`);
+    console.error(`💡 If the server is already running, you can visit: http://127.0.0.1:${PORT}/`);
+    console.error(`💡 To stop the existing process, run: lsof -ti :${PORT} | xargs kill -9\n`);
+    process.exit(1);
+  } else {
+    throw err;
+  }
+});
+
 server.listen(PORT, '127.0.0.1', () => {
   console.log(`Server running at http://127.0.0.1:${PORT}/`);
 });

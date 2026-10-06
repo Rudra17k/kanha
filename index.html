@@ -55,31 +55,35 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-lightBg dark:bg-darkBg text-neutral-900 dark:text-white transition-colors duration-300 font-sans tracking-tight antialiased selection:bg-neutral-200 dark:selection:bg-neutral-800 selection:text-neutral-900 dark:selection:text-white">
+<body class="bg-lightBg dark:bg-darkBg text-neutral-900 dark:text-white transition-colors duration-300 font-sans tracking-tight antialiased selection:bg-neutral-200 dark:selection:bg-neutral-800 selection:text-neutral-900 dark:selection:text-white relative">
 
-  <!-- Ambient Background Glow (Subtle minimalist depth) -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-white/5 to-transparent rounded-full blur-3xl opacity-60 dark:opacity-40"></div>
+  <!-- Top Apple Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Ambient Apple Aurora Glow (Subtle minimalist depth) -->
+  <div class="ambient-glow fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="ambient-orb-1"></div>
+    <div class="ambient-orb-2"></div>
   </div>
 
   <!-- Header / Navigation Bar -->
-  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/70 dark:bg-black/75 border-b border-darkBorder dark:border-[#222222] transition-colors duration-300">
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-black/75 border-b border-neutral-200/80 dark:border-darkBorder transition-all duration-300">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       
       <!-- Left: Creator Name -->
       <a href="#" class="group flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="font-bold text-lg md:text-xl tracking-tight text-white dark:text-white transition-colors group-hover:opacity-80" id="header-brand-name">
-          Kanha<span class="text-neutral-500">.</span>
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
+        <span class="font-bold text-lg md:text-xl tracking-tight text-neutral-900 dark:text-white transition-colors group-hover:opacity-80" id="header-brand-name">
+          Kanha<span class="text-neutral-400 dark:text-neutral-500">.</span>
         </span>
       </a>
 
       <!-- Right: Navigation links, Theme Toggle & Primary CTA -->
       <div class="flex items-center gap-4 sm:gap-6">
-        <nav class="hidden sm:flex items-center gap-6 text-sm font-medium">
-          <a href="#work" class="text-neutral-400 hover:text-white transition-colors">my work</a>
-          <a href="#testimonials" class="text-neutral-400 hover:text-white transition-colors">praise</a>
-          <a href="#story" class="text-neutral-400 hover:text-white transition-colors">story</a>
+        <nav class="hidden sm:flex items-center gap-6 text-sm font-medium" id="header-nav">
+          <a href="#work" class="nav-link text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">my work</a>
+          <a href="#testimonials" class="nav-link text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">praise</a>
+          <a href="#story" class="nav-link text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">story</a>
         </nav>
 
         <!-- Theme Toggle Button (Clean floating icon, no enclosing circle/border/background) -->
@@ -103,7 +107,7 @@
         </button>
 
         <!-- Primary CTA: "Book call" (Pill-shaped high-contrast) -->
-        <button id="nav-book-btn" class="book-call-trigger px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-black hover:bg-neutral-200 active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-1.5">
+        <button id="nav-book-btn" class="book-call-trigger magnetic-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-1.5 cursor-pointer">
           <span>Book call</span>
           <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
         </button>
@@ -118,8 +122,8 @@
     <!-- 2. Hero Section -->
     <section id="hero" class="min-h-[85vh] flex flex-col items-center justify-center px-6 pt-12 pb-20 text-center max-w-4xl mx-auto">
       
-      <!-- Social Proof Badge (Top Center) -->
-      <div id="hero-badge" class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-neutral-200 dark:border-[#222222] bg-white dark:bg-[#111111] backdrop-blur-md mb-8 hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-300 shadow-sm cursor-default">
+      <!-- Social Proof Badge (Top Center with Apple Shimmer) -->
+      <div id="hero-badge" class="hero-badge-shimmer inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-neutral-200/90 dark:border-neutral-800 bg-white/80 dark:bg-[#111111]/80 backdrop-blur-xl mb-8 hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-300 shadow-sm cursor-default">
         <!-- Avatar Stack -->
         <div class="flex -space-x-2 overflow-hidden">
           <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white dark:ring-black object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&crop=faces" alt="Client 1" />
@@ -146,7 +150,7 @@
       <!-- Hero CTAs -->
       <div id="hero-ctas" class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
         <!-- 3D macOS Peek Folder Button -->
-        <a href="#work" class="folder-badge group">
+        <a href="#work" class="folder-badge magnetic-btn group">
           <span class="fb-folder" aria-hidden="true">
             <span class="fb-back">
               <span class="fb-tab"></span>
@@ -163,8 +167,8 @@
           <i data-lucide="arrow-down-right" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 text-neutral-400 group-hover:text-white"></i>
         </a>
 
-        <!-- Secondary CTA: Simple text link -->
-        <button class="book-call-trigger text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1.5 transition-colors group py-2">
+        <!-- Secondary CTA: Simple text link with magnetic micro-interaction -->
+        <button class="book-call-trigger magnetic-btn text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1.5 transition-colors group py-2 cursor-pointer">
           <span>book a 30 min call</span>
           <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
         </button>
@@ -222,7 +226,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="work-grid">
 
         <!-- Card 1 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="3d-motion">
+        <div class="project-card spotlight-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 shadow-xl" data-category="3d-motion">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-cyber-city-with-neon-lights-and-skyscrapers-41555-large.mp4" 
@@ -248,16 +252,16 @@
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">Tech Launch</span>
             </div>
 
-            <!-- Live Soundwave Equalizer Badge -->
-            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+            <!-- Interactive Live Soundwave Equalizer Badge -->
+            <button type="button" aria-label="Toggle preview audio" class="sound-toggle-btn absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-85 hover:opacity-100 transition-all hover:scale-105 active:scale-95 cursor-pointer" title="Click to toggle sound">
               <span class="soundwave-indicator">
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
               </span>
-              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
-            </div>
+              <span class="sound-status-label text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
+            </button>
           </div>
 
           <!-- Card Content / Meta -->
@@ -271,7 +275,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="brand-film">
+        <div class="project-card spotlight-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 shadow-xl" data-category="brand-film">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-sunset-26070-large.mp4" 
@@ -295,16 +299,16 @@
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">RedBull Series</span>
             </div>
 
-            <!-- Live Soundwave Equalizer Badge -->
-            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+            <!-- Interactive Live Soundwave Equalizer Badge -->
+            <button type="button" aria-label="Toggle preview audio" class="sound-toggle-btn absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-85 hover:opacity-100 transition-all hover:scale-105 active:scale-95 cursor-pointer" title="Click to toggle sound">
               <span class="soundwave-indicator">
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
               </span>
-              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
-            </div>
+              <span class="sound-status-label text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
+            </button>
           </div>
 
           <div class="p-6 flex items-center justify-between">
@@ -317,7 +321,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="brand-film">
+        <div class="project-card spotlight-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 shadow-xl" data-category="brand-film">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-working-on-a-computer-1107-large.mp4" 
@@ -341,16 +345,16 @@
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">SaaS Launch</span>
             </div>
 
-            <!-- Live Soundwave Equalizer Badge -->
-            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+            <!-- Interactive Live Soundwave Equalizer Badge -->
+            <button type="button" aria-label="Toggle preview audio" class="sound-toggle-btn absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-85 hover:opacity-100 transition-all hover:scale-105 active:scale-95 cursor-pointer" title="Click to toggle sound">
               <span class="soundwave-indicator">
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
               </span>
-              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
-            </div>
+              <span class="sound-status-label text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
+            </button>
           </div>
 
           <div class="p-6 flex items-center justify-between">
@@ -363,7 +367,7 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="project-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 hover:scale-[1.015] shadow-xl" data-category="commercial">
+        <div class="project-card spotlight-card group relative rounded-3xl overflow-hidden bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-600 shadow-xl" data-category="commercial">
           <div class="relative w-full aspect-[16/10] overflow-hidden rounded-3xl">
             <video 
               src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" 
@@ -387,16 +391,16 @@
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900/60 backdrop-blur-md text-neutral-300 border border-white/10">Brand Identity</span>
             </div>
 
-            <!-- Live Soundwave Equalizer Badge -->
-            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+            <!-- Interactive Live Soundwave Equalizer Badge -->
+            <button type="button" aria-label="Toggle preview audio" class="sound-toggle-btn absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/10 text-white text-[11px] font-medium opacity-85 hover:opacity-100 transition-all hover:scale-105 active:scale-95 cursor-pointer" title="Click to toggle sound">
               <span class="soundwave-indicator">
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
                 <span class="soundwave-bar"></span>
               </span>
-              <span class="text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
-            </div>
+              <span class="sound-status-label text-[10px] tracking-wider uppercase text-neutral-300">HQ</span>
+            </button>
           </div>
 
           <div class="p-6 flex items-center justify-between">
@@ -442,7 +446,7 @@
       <div id="testimonial-carousel" class="flex gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing">
         
         <!-- Testimonial 1 (iMessage style) -->
-        <div class="testimonial-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
+        <div class="testimonial-card spotlight-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
           <div>
             <div class="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-darkBorder mb-4">
               <div class="flex items-center gap-3">
@@ -475,7 +479,7 @@
         </div>
 
         <!-- Testimonial 2 (Slack / DM style) -->
-        <div class="testimonial-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
+        <div class="testimonial-card spotlight-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
           <div>
             <div class="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-darkBorder mb-4">
               <div class="flex items-center gap-3">
@@ -506,7 +510,7 @@
         </div>
 
         <!-- Testimonial 3 (Slack thread) -->
-        <div class="testimonial-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
+        <div class="testimonial-card spotlight-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
           <div>
             <div class="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-darkBorder mb-4">
               <div class="flex items-center gap-3">
@@ -536,7 +540,7 @@
         </div>
 
         <!-- Testimonial 4 (WhatsApp / Discord snippet) -->
-        <div class="testimonial-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
+        <div class="testimonial-card spotlight-card flex-none w-[340px] sm:w-[400px] snap-start rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-6 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600">
           <div>
             <div class="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-darkBorder mb-4">
               <div class="flex items-center gap-3">
@@ -580,6 +584,8 @@
 
       <!-- Vertical Chronological Milestone Layout -->
       <div class="relative border-l border-neutral-200 dark:border-neutral-800 ml-4 sm:ml-8 pl-8 sm:pl-12 space-y-12" id="timeline-container">
+        <!-- Scroll-driven dynamic illuminated light beam -->
+        <div id="timeline-progress-beam" class="timeline-beam absolute left-[-1px] top-0 w-[2px] bg-gradient-to-b from-emerald-500 via-teal-400 to-transparent h-0 transition-all duration-150 shadow-[0_0_12px_rgba(16,185,129,0.8)] pointer-events-none"></div>
         
         <!-- Milestone 2020 -->
         <div class="timeline-item relative group">
@@ -663,7 +669,7 @@
     <section id="contact" class="max-w-4xl mx-auto px-6 pt-24 pb-12 scroll-mt-20">
       
       <!-- Big Statement Box -->
-      <div class="rounded-3xl bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden">
+      <div class="rounded-3xl spotlight-card bg-white dark:bg-darkCard border border-neutral-200 dark:border-darkBorder p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden">
         
         <!-- Subtle corner decorative gradient -->
         <div class="absolute -bottom-20 -right-20 w-60 h-60 bg-gradient-to-tl from-black/5 dark:from-white/5 to-transparent rounded-full blur-2xl pointer-events-none"></div>
@@ -685,13 +691,13 @@
               <i data-lucide="mail" class="w-4 h-4 text-neutral-500 dark:text-neutral-400"></i>
               <span>hello@kanha.design</span>
             </a>
-            <button id="copy-email-btn" type="button" aria-label="Copy email address" class="ml-3 pl-3 border-l border-neutral-300 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors" title="Copy to clipboard">
+            <button id="copy-email-btn" type="button" aria-label="Copy email address" class="magnetic-btn ml-3 pl-3 border-l border-neutral-300 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer" title="Copy to clipboard">
               <i data-lucide="copy" class="w-3.5 h-3.5"></i>
             </button>
           </div>
 
           <!-- Primary Book Call CTA Button -->
-          <button class="book-call-trigger px-6 py-3 rounded-full text-sm font-semibold bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md flex items-center gap-2">
+          <button class="book-call-trigger magnetic-btn px-6 py-3 rounded-full text-sm font-semibold bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md flex items-center gap-2 cursor-pointer">
             <i data-lucide="calendar" class="w-4 h-4"></i>
             <span>book a 30 min call</span>
           </button>

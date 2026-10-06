@@ -535,4 +535,192 @@ document.addEventListener('DOMContentLoaded', () => {
   if (currentYearEl) {
     currentYearEl.innerText = new Date().getFullYear();
   }
+
+  /* ==========================================================================
+     8. Apple Design Award: Top Scroll Progress & Active Nav Scrollspy
+     ========================================================================== */
+  function initScrollProgressAndNav() {
+    const progressBar = document.getElementById('scroll-progress');
+    const navLinks = document.querySelectorAll('#header-nav .nav-link');
+    const sections = ['work', 'testimonials', 'story'].map(id => document.getElementById(id)).filter(Boolean);
+
+    function onScroll() {
+      // 1. Update Scroll Progress Bar
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      if (progressBar) {
+        progressBar.style.width = `${Math.min(Math.max(scrollPercent, 0), 100)}%`;
+      }
+
+      // 2. Active Section Spy
+      let currentSectionId = '';
+      const scrollPos = scrollTop + 160;
+
+      sections.forEach(sec => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSectionId = sec.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentSectionId}`) {
+          link.classList.add('active-nav');
+        } else {
+          link.classList.remove('active-nav');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  initScrollProgressAndNav();
+
+  /* ==========================================================================
+     9. Apple Design Award: Interactive Cursor Spotlight & 3D Tilt
+     ========================================================================== */
+  function initSpotlightAndTilt() {
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const cards = document.querySelectorAll('.spotlight-card');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        if (canHover && !card.classList.contains('active')) {
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          // Ultra-fine Apple Pro 3D tilt
+          const rotateX = ((y - centerY) / centerY) * -3.5;
+          const rotateY = ((x - centerX) / centerX) * 3.5;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.012, 1.012, 1.012)`;
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--mouse-x', '-999px');
+        card.style.setProperty('--mouse-y', '-999px');
+        card.style.transform = '';
+      });
+    });
+  }
+
+  initSpotlightAndTilt();
+
+  /* ==========================================================================
+     10. Apple Design Award: Magnetic Spring Buttons
+     ========================================================================== */
+  function initMagneticButtons() {
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!canHover) return;
+
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+
+        // Gentle spring drift (scaled to 18%)
+        btn.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  initMagneticButtons();
+
+  /* ==========================================================================
+     11. Apple Design Award: Sound Toggle Interactive Micro-interaction
+     ========================================================================== */
+  function initSoundToggle() {
+    const soundBtns = document.querySelectorAll('.sound-toggle-btn');
+
+    soundBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent opening full video modal
+
+        const card = btn.closest('.project-card');
+        const video = card ? card.querySelector('video') : null;
+        const label = btn.querySelector('.sound-status-label');
+
+        if (!video) return;
+
+        const isCurrentlyMuted = video.muted;
+
+        if (isCurrentlyMuted) {
+          // Unmute video
+          video.muted = false;
+          btn.classList.add('sound-active');
+          if (label) label.innerText = 'AUDIO ON';
+          showToast('Sound preview enabled 🔊');
+        } else {
+          // Mute video
+          video.muted = true;
+          btn.classList.remove('sound-active');
+          if (label) label.innerText = 'HQ';
+        }
+      });
+    });
+  }
+
+  initSoundToggle();
+
+  /* ==========================================================================
+     12. Apple Design Award: Timeline Dynamic Illuminated Beam
+     ========================================================================== */
+  function initTimelineScrollBeam() {
+    const container = document.getElementById('timeline-container');
+    const beam = document.getElementById('timeline-progress-beam');
+    const milestoneItems = document.querySelectorAll('.timeline-item');
+
+    if (!container || !beam) return;
+
+    function updateTimelineBeam() {
+      const rect = container.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Trigger zone
+      const startTrigger = windowHeight * 0.75;
+      const endTrigger = windowHeight * 0.35;
+
+      const totalHeight = container.offsetHeight;
+      const scrolledPastTop = startTrigger - rect.top;
+
+      let progress = scrolledPastTop / (totalHeight + (startTrigger - endTrigger));
+      progress = Math.min(Math.max(progress, 0), 1);
+
+      beam.style.height = `${(progress * 100).toFixed(1)}%`;
+
+      // Activate passed milestone nodes
+      milestoneItems.forEach(item => {
+        const itemRect = item.getBoundingClientRect();
+        if (itemRect.top < startTrigger) {
+          item.classList.add('active-milestone');
+        } else {
+          item.classList.remove('active-milestone');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateTimelineBeam, { passive: true });
+    updateTimelineBeam();
+  }
+
+  initTimelineScrollBeam();
 });
